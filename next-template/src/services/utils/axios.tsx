@@ -43,7 +43,7 @@ export const getApiCall = async (
       const res = await axiosInstance.get(requestUrl);
       return res;
     }
-  } catch (err) {
+  } catch (err:any) {
     return err;
   }
 };

@@ -1,3 +1,5 @@
-export const BASE_URL = "https://eacademyeducation.com:8011/client/";
+export const BASE_URL = "https://jsonplaceholder.typicode.com/";
 
-export const API = {};
+export const API = {
+    GetRANDOMPOST: "posts"
+};
