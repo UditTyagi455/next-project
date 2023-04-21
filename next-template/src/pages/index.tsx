@@ -1,8 +1,12 @@
-import React from 'react'
+import React from 'react';
+import Home from "../components/Home"
 
 const index = () => {
   return (
-    <div>index</div>
+    <div>
+      <h1 className='text-yellow-600'>This is heading text</h1>
+      <Home/>
+    </div>
   )
 }
 

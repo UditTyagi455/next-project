@@ -1,4 +1,4 @@
-// import Cookies from "js-cookie"
+import Cookies from "js-cookie";
 import axiosInstance from './axiosInstance'
 // import LocalStorage from "../../services/local_storage";
 
