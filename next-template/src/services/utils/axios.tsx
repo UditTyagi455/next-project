@@ -74,7 +74,6 @@ export const postApiCall = async (
     }
     
   } catch (err) {
-    alert("error")
     return err;
   }
 };
