@@ -1,8 +1,10 @@
 import React from "react";
+import Homecomp from "../../components/Home/"
+import auth from "../../auth/index"
 
 const Home = () => {
     return (
-        <h2>this is home component</h2>
+       <Homecomp/>
     )
 }
-export default Home
+export default auth(Home)

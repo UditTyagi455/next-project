@@ -1,6 +1,6 @@
-export const BASE_URL = "https://sokonis.com/staging/wp-json/rtcl/v1/";
+export const BASE_URL = "https://eacademyeducation.com:8011/client/";
 
 export const API = {
     GetRANDOMPOST: "login",
-    LOGIN: "login"
+    LOGIN: "client-login"
 };

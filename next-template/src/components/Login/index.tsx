@@ -1,17 +1,21 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { useFormik } from 'formik';
 import { initialValues,validationSchema } from '@/services/validate/login';
 import DefaultValidationText from '../Common/DefaultValidationText';
 import { useMutation } from 'react-query';
 import { LogIn } from '@/services/helper/Login';
+import CookieStorage from '@/services/cookieStorage';
 
 interface initialValues {
-  username:String,
+  email:String,
   password:string
 }
 
 export const SignInTwo = () => {
+  const cookie = new CookieStorage();
+  const router = useRouter();
 
    const {mutate,isLoading} = useMutation(LogIn,{
      mutationKey : "login",
@@ -20,6 +24,8 @@ export const SignInTwo = () => {
       if(data?.status === false) {
         alert("wrong")
      } else if(data?.status === true) {
+      cookie.setLogin(data?.data?.loginToken);
+      router.push("/home")
        alert('added');
      }
      },
@@ -160,15 +166,15 @@ export const SignInTwo = () => {
                     <input
                       className="flex h-10 w-full rounded-md border border-gray-300 bg-transparent py-2 px-3 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-700 dark:text-gray-50 dark:focus:ring-gray-400 dark:focus:ring-offset-gray-900"
                       type="email"
-                      name="username"
+                      name="email"
                       placeholder="email.."
-                      value={formik.values.username}
+                      value={formik.values.email}
                       onChange={formik.handleChange}
                     />
                   </div>
                   <span className="h-5">
-                  {formik.touched.username && formik.errors.username ? (
-                  <DefaultValidationText Text={formik.errors.username} />
+                  {formik.touched.email && formik.errors.email ? (
+                  <DefaultValidationText Text={formik.errors.email} />
                   ) : null}
                   </span>
                 </div>
