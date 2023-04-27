@@ -2,8 +2,8 @@ import { useEffect, useState } from "react";
 import Router from "next/router";
 import CookieStorage from "../services/cookieStorage";
 
-const auth = (WrappedComponent) => {
-  const Auth = (props) => {
+const auth = (WrappedComponent:any) => {
+  const Auth = (props:any) => {
     const { getLogin } = new CookieStorage();
 
     useEffect(() => {

@@ -7,6 +7,8 @@ import DefaultValidationText from '../Common/DefaultValidationText';
 import { useMutation } from 'react-query';
 import { LogIn } from '@/services/helper/Login';
 import CookieStorage from '@/services/cookieStorage';
+import app from '@/auth/firebase-auth';
+import {GoogleAuthProvider,getAuth,signInWithPopup} from "firebase/auth"
 
 interface initialValues {
   email:String,
@@ -16,6 +18,7 @@ interface initialValues {
 export const SignInTwo = () => {
   const cookie = new CookieStorage();
   const router = useRouter();
+  const provider = new GoogleAuthProvider();
 
    const {mutate,isLoading} = useMutation(LogIn,{
      mutationKey : "login",
@@ -42,12 +45,26 @@ export const SignInTwo = () => {
       mutate(values);
      },
      validationSchema
-   })
+   });
+
+   const googleSignIn = () => {
+    
+    const auth = getAuth(app);
+    signInWithPopup(auth, provider)
+      .then((response) => {
+        console.log("success login",response);
+        cookie.setLogin(response?.user?.accessToken);
+        router.push("/home")
+      })
+      .catch((err) => {
+        console.log("what is error",err)
+      });
+  };
 
 
   return (
     <section className='h-full md:h-full lg:h-screen'>
-      <div className="grid grid-cols-1 lg:grid-cols-2 h-full bg-slate-800">
+      <div className="grid grid-cols-1 lg:grid-cols-2 h-full md:h-screen bg-slate-800">
         <div className="relative flex items-end px-4 pb-10 pt-60 sm:px-6 sm:pb-16 md:justify-center lg:px-8 lg:pb-24">
           <div className="absolute inset-0">
             <img
@@ -244,6 +261,7 @@ export const SignInTwo = () => {
               <button
                 type="button"
                 className="relative inline-flex w-full items-center justify-center rounded-md border border-gray-500 bg-white px-4 py-4 text-base font-semibold text-gray-700 transition-all duration-200 hover:bg-gray-100 hover:text-black focus:bg-gray-100 focus:text-black focus:outline-none dark:text-gray-400"
+                onClick={() => googleSignIn()}
               >
                 <div className="absolute inset-y-0 left-0 p-4">
                   <svg
