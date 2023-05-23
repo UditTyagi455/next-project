@@ -2,7 +2,7 @@ import React from 'react'
 import { useQuery,useMutation } from 'react-query'
 import { RandomPost } from '@/services/helper/PostApi'
 import { AddPost } from '@/services/helper/PostApi';
-import auth from "../../auth/index"
+import auth from "../../auth"
 
 const Homecomp = () => {
   const queryParams = {}

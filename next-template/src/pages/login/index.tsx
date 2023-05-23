@@ -1,4 +1,4 @@
-import { SignInTwo } from '@/components/Login'
+import  SignInTwo  from '@/components/Login'
 import React from 'react'
 
 const index = () => {

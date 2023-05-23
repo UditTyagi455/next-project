@@ -8,14 +8,15 @@ import { useMutation } from 'react-query';
 import { LogIn } from '@/services/helper/Login';
 import CookieStorage from '@/services/cookieStorage';
 import app from '@/auth/firebase-auth';
-import {GoogleAuthProvider,getAuth,signInWithPopup} from "firebase/auth"
+import {GoogleAuthProvider,getAuth,signInWithPopup} from "firebase/auth";
+import auth from "../../auth";
 
 interface initialValues {
   email:String,
   password:string
 }
 
-export const SignInTwo = () => {
+ const SignInTwo = () => {
   const cookie = new CookieStorage();
   const router = useRouter();
   const provider = new GoogleAuthProvider();
@@ -61,7 +62,7 @@ export const SignInTwo = () => {
       });
   };
 
-
+  console.log('?call-again')
   return (
     <section className='h-full md:h-full lg:h-screen'>
       <div className="grid grid-cols-1 lg:grid-cols-2 h-full md:h-screen bg-slate-800">
@@ -169,7 +170,7 @@ export const SignInTwo = () => {
               </Link>
             </p>
 
-            <form className="mt-8" onSubmit={formik.handleSubmit}>
+            <form className="mt-8" >
               <div className="space-y-5">
                 <div>
                   <label
@@ -300,4 +301,6 @@ export const SignInTwo = () => {
   )
 }
 
-SignInTwo.displayName = 'SignInTwo'
+SignInTwo.displayName = 'SignInTwo';
+
+export default SignInTwo ;
